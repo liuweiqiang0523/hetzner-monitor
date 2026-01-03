@@ -4,3 +4,4 @@ Hetzner 的云服务器性价比极高，但 20TB 的流量限制一旦超标，
 这套系统不仅仅是一个报警器，更是一套全自动化的运维闭环，特别适合 PT 刷流或高流量业务。
 一切都是为了我自己使用而搞的..
 别拿去商用..
+<img width="967" height="1103" alt="image" src="https://github.com/user-attachments/assets/e08efc49-d650-4d85-9e83-389f94e59828" />
