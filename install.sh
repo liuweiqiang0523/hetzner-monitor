@@ -2,6 +2,7 @@
 
 # ==========================================
 # 🚀 Hetzner 流量监控保姆级脚本 (安装+管理)
+#    修复版: 解决今日流量显示为0的问题
 # ==========================================
 
 # 定义颜色
@@ -79,11 +80,11 @@ COPY main.py .
 CMD ["python", "-u", "main.py"]
 EOF
 
-    # 生成 main.py (包含所有逻辑)
+    # 生成 main.py (包含修正后的时区逻辑)
     cat << EOF > main.py
 # -*- coding: utf-8 -*-
 import time, threading, telebot, requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from hcloud import Client
 from hcloud.images.domain import Image
 from hcloud.server_types.domain import ServerType
@@ -144,14 +145,24 @@ def update_cloudflare(conf, new_ip):
     except Exception as e: return f"❌ DNS异常: {str(e)}"
 
 def get_today_traffic(server):
+    """计算今日流量(修正时区版)"""
     try:
-        now = datetime.now()
-        start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        metrics = server.get_metrics(type="traffic", start=start, end=now)
+        # 获取 UTC 和 北京时间
+        now_utc = datetime.utcnow()
+        now_bj = now_utc + timedelta(hours=8)
+        
+        # 算出北京时间“今天0点”对应的 UTC 时间
+        start_bj_day = now_bj.replace(hour=0, minute=0, second=0, microsecond=0)
+        start_query_utc = start_bj_day - timedelta(hours=8)
+        
+        # 向 API 查询 (使用 UTC 时间段)
+        metrics = server.get_metrics(type="traffic", start=start_query_utc, end=now_utc)
+        
         if not metrics or not metrics.time_series: return 0, 0
+
         def integrate(series):
             total = 0
-            if not series: return 0
+            if not series or len(series) < 2: return 0
             for i in range(len(series) - 1):
                 val = float(series[i][1])
                 t_curr = series[i][0]
@@ -159,10 +170,13 @@ def get_today_traffic(server):
                 duration = (t_next - t_curr).total_seconds()
                 total += val * duration
             return total
+
         up = integrate(metrics.time_series.get('traffic.0.out', []))
         down = integrate(metrics.time_series.get('traffic.0.in', []))
         return up, down
-    except: return 0, 0
+    except Exception as e:
+        print(f"Metrics Error: {e}")
+        return 0, 0
 
 def get_usage(conf, fetch_today=False):
     try:
