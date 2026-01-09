@@ -59,7 +59,21 @@ docker-compose up -d
 
 ```
 
+## 💡 进阶技巧：设置快捷命令
 
+觉得每次输入长链接太麻烦？在终端执行这一行命令，以后只需要输入 `hz` 就能唤出管理面板！
+
+```bash
+echo "alias hz='bash <(curl -sL [https://oknm.de/hz](https://oknm.de/hz))'" >> ~/.bashrc && source ~/.bashrc
+
+```
+
+以后管理服务器，只需键入：
+
+```bash
+hz
+
+```
 
 ## ⚙️ 配置说明 (Configuration)
 
