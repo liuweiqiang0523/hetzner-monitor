@@ -83,7 +83,7 @@ hz
 | --- | --- | --- |
 | `HETZNER_TOKEN` | Hetzner API Token | **必填** (控制台获取) |
 | `SERVER_ID` | 需要监控的服务器 ID | **必填** (URL中获取) |
-| `TRAFFIC_LIMIT` | 流量预警阈值 (单位: TB) | `19` |
+| `TRAFFIC_LIMIT` | 流量预警阈值 (单位: TB) | `18` |
 | `CHECK_INTERVAL` | 检查间隔时间 (单位: 秒) | `60` |
 | `TG_BOT_TOKEN` | (可选) TG 机器人 Token | @BotFather |
 | `TG_CHAT_ID` | (可选) TG 推送的用户 ID | @userinfobot |
