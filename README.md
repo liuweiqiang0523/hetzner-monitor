@@ -50,15 +50,13 @@ bash <(curl -sL [https://oknm.de/hz](https://oknm.de/hz))
 | --- | --- | --- |
 | `HETZNER_TOKEN` | Hetzner API Token | Hetzner Cloud Console -> Security -> API Tokens |
 | `SERVER_ID` | 需要监控的服务器 ID | URL 链接中的数字或 API 获取 |
-| `TG_BOT_TOKEN` | (可选) Telegram 机器人 Token | @BotFather |
-| `TG_CHAT_ID` | (可选) Telegram 用户 ID | @userinfobot |
+| `TG_BOT_TOKEN` | (可选) TG 机器人 Token | @BotFather |
+| `TG_CHAT_ID` | (可选) TG 用户 ID | @userinfobot |
 
 ## ⚠️ 免责声明
 
 1. 本项目的初衷是为了满足作者个人的使用需求。
 2. **仅供学习交流使用，严禁用于任何商业用途。**
 3. 使用本工具产生的任何后果（包括但不限于数据丢失、服务中断）由使用者自行承担。
-
-```
 
 ```
