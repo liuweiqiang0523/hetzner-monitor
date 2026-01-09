@@ -115,5 +115,3 @@ docker restart hetzner-monitor
 
 1. 提交 [Issue](https://github.com/liuweiqiang0523/hetzner-monitor/issues) 反馈。
 2. 欢迎 Pull Requests 贡献代码。
-
-```
