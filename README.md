@@ -99,7 +99,7 @@ docker restart hetzner-monitor
 
 如果你在使用过程中遇到问题，或者有新的功能建议：
 
-1. 提交 [Issue](https://www.google.com/search?q=https://github.com/liuweiqiang0523/hetzner-monitor/issues) 反馈。
+1. 提交 [Issue](https://github.com/liuweiqiang0523/hetzner-monitor/issues) 反馈。
 2. 欢迎 Pull Requests 贡献代码。
 
 ```
